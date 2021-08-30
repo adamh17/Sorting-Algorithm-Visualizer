@@ -1,0 +1,45 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content:center;
+    align-items: left;
+    font-family: "Poppins" sans-serif;
+    bottom: 0%;
+    padding: 2em;
+    background-color:aliceblue;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    background-color: rebeccapurple;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    height: 40px;
+    border: solid black 2px;
+}
+
+button:hover{
+    background-color:#5cbf2a;
+}
+
+button{
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: 600;
+    border: solid black 2px;
+}
+
+.bar {
+    display: inline-block;
+}
+
+.overflowprevention{
+    white-space: nowrap;
+    transform: rotate(180deg) scaleX(-1);
+}
