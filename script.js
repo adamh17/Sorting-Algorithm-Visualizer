@@ -152,7 +152,13 @@ async function selectionSort(bars, length){
 				resolve();
 			}, 5));
 		}
+		$(bars[i]).css({
+			"background-color": "red",
+		})
 		swap(bars, i, index);
+		$(bars[i]).css({
+			"background-color": "rebeccapurple",
+		})
 	}
 	return bars;
 }
