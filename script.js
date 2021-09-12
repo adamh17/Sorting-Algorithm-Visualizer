@@ -83,11 +83,11 @@ function indexing(bars, left, right) {
 // Function that swaps two values on screen
 // Used in various of our sorting algorithms
 function swap(bars, firstIndex, secondIndex) {
-	var temp, visualTemp;
+	var temp, barOnScreen;
 	
-	visualTemp = bars[secondIndex];
+	barOnScreen = bars[secondIndex];
 	$(bars[firstIndex]).insertAfter($(bars[secondIndex]));
-	$(visualTemp).insertBefore($(bars[firstIndex + 1]));
+	$(barOnScreen).insertBefore($(bars[firstIndex + 1]));
 
 	temp = bars[firstIndex];
 	bars[firstIndex] = bars[secondIndex];
@@ -108,13 +108,13 @@ async function bubbleSort(bars, n){
 		for(i = 0; i < n - 1; i++){
 			await new Promise(resolve => setTimeout(() =>{
 				if($(bars[i]).height() > $(bars[i+1]).height()){
-					var temp, visualTemp;
+					var temp, barOnScreen;
 					$(bars[i]).css({
 						"background-color": "red",
 					})
-					visualTemp = bars[i+1];
+					barOnScreen = bars[i+1];
 					$(bars[i]).insertAfter($(bars[i+1]));
-					$(visualTemp).insertBefore($(bars[i+1]));
+					$(barOnScreen).insertBefore($(bars[i+1]));
 
 					temp = bars[i];
 					bars[i] = bars[i+1];
@@ -177,10 +177,10 @@ async function insertionSort(bars, length){
 		var j = i-1;
 		await new Promise(resolve => setTimeout(() =>{
 			while(j > -1 && $(bars[j]).height() < $(bars[j-1]).height()){
-				var temp, visualTemp;
-				visualTemp = bars[j-1];
+				var temp, barOnScreen;
+				barOnScreen = bars[j-1];
 				$(bars[j]).insertAfter($(bars[j-1]));
-				$(visualTemp).insertBefore($(bars[j+1]));
+				$(barOnScreen).insertBefore($(bars[j+1]));
 
 				temp = bars[j];
 				bars[j] = bars[j-1];
