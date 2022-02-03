@@ -30,6 +30,14 @@ function quickSort(bars, left, right) {
 		if (bars.length > 1) {
 			index = indexing(bars, left, right);
 
+			$(bars[left]).css({
+				"background-color": "rebeccapurple",
+			})
+		
+			$(bars[right]).css({
+				"background-color": "rebeccapurple",
+			})
+
 			// put everything smaller than our pivot before it in the array
 			if (left < (index - 1)) {
 				quickSort(bars, left, (index - 1));
@@ -41,7 +49,7 @@ function quickSort(bars, left, right) {
 			}
 		}
 		return bars;
-	}, 70);
+	}, 300);
 }
 
 // Pass the array into the quicksort function
@@ -69,9 +77,18 @@ function indexing(bars, left, right) {
 		while ($(bars[j]).height() > pivot.height()) {
 			j--;
 		}
-		// if i and j haven't overlappedm swap the numbers at their
+		// if i and j haven't overlapped swap the numbers at their
 		// respective positions
 		if (i <= j) {
+
+			$(bars[i]).css({
+				"background-color": "red",
+			})
+		
+			$(bars[j]).css({
+				"background-color": "red",
+			})
+
 			swap(bars, i, j);
 			i++;
 			j--;
@@ -84,7 +101,7 @@ function indexing(bars, left, right) {
 // Used in various of our sorting algorithms
 function swap(bars, firstIndex, secondIndex) {
 	var temp, barOnScreen;
-	
+
 	barOnScreen = bars[secondIndex];
 	$(bars[firstIndex]).insertAfter($(bars[secondIndex]));
 	$(barOnScreen).insertBefore($(bars[firstIndex + 1]));
@@ -92,6 +109,7 @@ function swap(bars, firstIndex, secondIndex) {
 	temp = bars[firstIndex];
 	bars[firstIndex] = bars[secondIndex];
 	bars[secondIndex] = temp;
+
 }
 
 // Attached to a button to display a new array on screen
@@ -106,12 +124,16 @@ async function bubbleSort(bars, n){
 	do{
 		isSwapped = false;
 		for(i = 0; i < n - 1; i++){
+
 			await new Promise(resolve => setTimeout(() =>{
+
 				if($(bars[i]).height() > $(bars[i+1]).height()){
 					var temp, barOnScreen;
+
 					$(bars[i]).css({
 						"background-color": "red",
 					})
+
 					barOnScreen = bars[i+1];
 					$(bars[i]).insertAfter($(bars[i+1]));
 					$(barOnScreen).insertBefore($(bars[i+1]));
@@ -125,8 +147,11 @@ async function bubbleSort(bars, n){
 					"background-color": "rebeccapurple",
 				})
 				resolve();
-			}, 10));
+			}, 5));
 		}
+		$(bars[i]).css({
+			"background-color": "rebeccapurple",
+		})
 	}while(isSwapped);
 	return bars;
 }
@@ -150,7 +175,7 @@ async function selectionSort(bars, length){
 					index = j;
 				}
 				resolve();
-			}, 5));
+			}, 50));
 		}
 		$(bars[i]).css({
 			"background-color": "red",
@@ -173,12 +198,23 @@ function showSelectionSort(){
 
 async function insertionSort(bars, length){
 	var i;
-	for(i=1; i < length+1; i++){
-		var j = i-1;
+	for(i = 1; i < length + 1; i++){
+		var j = i - 1;
+
+		$(bars[j-1]).css({
+			"background-color": "red",
+		})
+
 		await new Promise(resolve => setTimeout(() =>{
+
 			while(j > -1 && $(bars[j]).height() < $(bars[j-1]).height()){
 				var temp, barOnScreen;
 				barOnScreen = bars[j-1];
+
+				$(bars[j-1]).css({
+					"background-color": "rebeccapurple",
+				})
+
 				$(bars[j]).insertAfter($(bars[j-1]));
 				$(barOnScreen).insertBefore($(bars[j+1]));
 
@@ -186,9 +222,11 @@ async function insertionSort(bars, length){
 				bars[j] = bars[j-1];
 				bars[j-1] = temp;
 				j--;
+
 			}
+
 			resolve();
-		}, 30));
+		}, 40));
 	}
 	return bars;
 }
